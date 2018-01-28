@@ -10,24 +10,38 @@ namespace ConsoleApp40
     {
         static void Main(string[] args)
         {
-            int[] points = new int[5];
-            for (int i = 0; i < points.Length; i++)
-            {
-                Console.Write(" Give points {0}: ", i+1);
-                string line = Console.ReadLine();
-                int point;
-                bool result = Int32.TryParse(line, out point);
-                if (result)
-                {
-                    points[i] = point;
-                }
-                 else
-                    Console.WriteLine("You didn't give a number! ");
-            }
-            Array.Sort(points);
+            int[] credits = new int[6];
+            int number;
+            bool result;
 
-            int sum = points[1] + points[2] + points[3];
-            Console.WriteLine("Sum is: " + sum) ;
+
+            Console.WriteLine("Give credits between 0 to 5. ");
+            do
+            {
+                Console.WriteLine("Give credit: ");
+                string line = Console.ReadLine();
+                result = Int32.TryParse(line, out number);
+
+                switch (number)
+                {
+                case 0: credits[0]++; break;
+                case 1: credits[1]++; break;
+                case 2: credits[2]++; break;
+                case 3: credits[3]++; break;
+                case 4: credits[4]++; break;
+                case 5: credits[5]++; break;
+                }
+
+            } while (result);
+
+            Console.WriteLine("Credits: ");
+            for (int i = 0; i < credits.Length; i++)
+            {
+                Console.Write(i + " : ");
+                for (int k = 0; k < credits[i]; k++)
+                    Console.Write("*");
+                Console.WriteLine();
+            }
 
             Console.ReadLine();
         }
